@@ -28,11 +28,11 @@ distro: buildtsc
 
 tsweb:
 	npm run esbuild-clean
-	(ip addr || ifconfig) | grep inet
+	#(ip addr || ifconfig) | grep inet
 	$(TSC) -w --preserveWatchOutput &
 	sleep 9999999 | npm run esbuild-worker -- --watch &
 	sleep 9999999 | npm run esbuild-ui -- --watch &
-	python3 scripts/serveit.py 2>> /dev/null #http.out
+	python scripts/serveit.py 2>> /dev/null #http.out
 
 astrolibre.b64.txt: astrolibre.rom
 	lzg -9 $< | base64 -w 0 > $@
