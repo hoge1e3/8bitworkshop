@@ -130,7 +130,6 @@ function recordVideo(intervalMsec, maxFrames, callback) {
   f();
  });
 }
-
 async function startPlatform(qs) {
   if (!PLATFORMS[platform_id]) throw Error("Invalid platform '" + platform_id + "'.");
   platform = new PLATFORMS[platform_id]($("#emuscreen")[0]);
@@ -163,6 +162,8 @@ async function startPlatform(qs) {
   startROM(title, rom);
   return true;
 }
+
+(window as any).loadPlatform=loadPlatform;
 
 // TODO: merge with ui
 async function loadPlatform(qs) {
@@ -237,4 +238,5 @@ function receiveMessage(event) {
 if(self === top) {
   document.body.style.backgroundColor = '#555';
 }
-startEmbed();
+//startEmbed();
+//loadPlatform({p:"msx", url:"res/39.rom"});
