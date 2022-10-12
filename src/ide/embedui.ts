@@ -4,8 +4,9 @@ import { PLATFORMS } from "../common/emu";
 import { Platform } from "../common/baseplatform";
 import { stringToByteArray, getWithBinary, loadScript, getRootBasePlatform } from "../common/util";
 import { StateRecorderImpl } from "../common/recorder";
-import { importPlatform } from "../platform/_index";
+//import { importPlatform } from "../platform/_index";
 import { saveAs } from "file-saver";
+import("../platform/msx");
 
 export var platform_id : string;	// platform ID string
 export var platform : Platform;	// platform object
@@ -171,7 +172,7 @@ async function loadPlatform(qs) {
   platform_id = qs['p'];
   if (!platform_id) throw new Error('No platform variable!');
   try {
-    var module = await importPlatform(getRootBasePlatform(platform_id));
+    //var module = await importPlatform(getRootBasePlatform(platform_id));
     console.log("starting platform", platform_id); // loaded required <platform_id>.js file
     await startPlatform(qs);
   } catch (e) {
