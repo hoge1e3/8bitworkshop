@@ -147,13 +147,14 @@ async function startPlatform(qs) {
   var rom : Uint8Array;
   var romurl = qs['url'];
   var lzgvar = qs['r'];
+  (window as any).platform=platform;
   if (romurl) {
     // load rom url remotely
     console.log(romurl);
     getWithBinary(romurl, (data) => {
       startROM(title, data);
     }, 'arraybuffer');
-    return true;
+    return platform;
   } else if (lzgvar) {
     // decompress from lzg
     var lzgrom = stringToByteArray(atob(lzgvar));
@@ -161,7 +162,7 @@ async function startPlatform(qs) {
   }
   addPageFocusHandlers();
   startROM(title, rom);
-  return true;
+  return platform;
 }
 
 (window as any).loadPlatform=loadPlatform;
@@ -174,7 +175,7 @@ async function loadPlatform(qs) {
   try {
     //var module = await importPlatform(getRootBasePlatform(platform_id));
     console.log("starting platform", platform_id); // loaded required <platform_id>.js file
-    await startPlatform(qs);
+    return await startPlatform(qs);
   } catch (e) {
     console.log(e);
     alert('Platform "' + platform_id + '" not supported.');
