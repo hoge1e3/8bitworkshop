@@ -133,7 +133,7 @@ function recordVideo(intervalMsec, maxFrames, callback) {
 }
 async function startPlatform(qs) {
   if (!PLATFORMS[platform_id]) throw Error("Invalid platform '" + platform_id + "'.");
-  platform = new PLATFORMS[platform_id]($("#emuscreen")[0]);
+  platform = new PLATFORMS[platform_id]($(qs["screen"]||"#emuscreen")[0]);
   await platform.start();
   // start recorder when click on canvas (TODO?)
   if (qs['rec']) {
