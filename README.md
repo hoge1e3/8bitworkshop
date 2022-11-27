@@ -1,3 +1,8 @@
+This is emurator part of MSXPanel(to be linked). 
+Use 8bit-concat(to be linked) to generate concat.js, the emulator script for MSXPanel.
+
+The original README.md
+
 # 8bitworkshop
 
 ![Build Status](https://github.com/sehugg/8bitworkshop/actions/workflows/node.js.yml/badge.svg)
