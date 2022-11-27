@@ -1,7 +1,7 @@
 This is emurator part of MSXPanel(to be linked). 
-Use 8bit-concat(to be linked) to generate concat.js, the emulator script for MSXPanel.
+Use [8bit-concat](https://github.com/hoge1e3/8bit_concat) to generate concat.js, the emulator script for MSXPanel.
 
-The original README.md
+The original README.md:
 
 # 8bitworkshop
 
