@@ -1,4 +1,4 @@
-This is emurator part of MSXPanel(to be linked). 
+This is emurator part of [MSXPanel](https://github.com/hoge1e3/MSXPanel). 
 Use [8bit-concat](https://github.com/hoge1e3/8bit_concat) to generate concat.js, the emulator script for MSXPanel.
 
 The original README.md:
