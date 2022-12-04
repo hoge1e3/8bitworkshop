@@ -403,7 +403,13 @@ export var SampleAudio = function(clockfreq) {
     );
   }
   function bufTime() {
-    return isAndroid() ? 30/60 : 3/60;
+    return isAndroid() ? 30/60 : 1/60;
+  }
+  function bufSize(sr:number) {
+    const min=bufTime()*sr;
+    let res=256;
+    while(res<min) res*=2;
+    return res;
   }
   function createContext() {
     var AudioContext = window['AudioContext'] || window['webkitAudioContext'] || window['mozAudioContext'];
@@ -411,10 +417,10 @@ export var SampleAudio = function(clockfreq) {
       console.log("no web audio context");
       return;
     }
-    var ctx : AudioContext = new AudioContext({ sampleRate: 48000 });
+    var ctx : AudioContext = new AudioContext();//{ sampleRate: 48000 });
     self.context = ctx;
     self.sr=self.context.sampleRate;
-    self.bufferlen=Math.floor(bufTime()*self.sr);
+    self.bufferlen=bufSize(self.sr);
     console.log("sampleRate", ctx.sampleRate, "bullerlen", self.bufferlen);
     
     // remove DC bias

@@ -177,8 +177,8 @@ async function loadPlatform(qs) {
     console.log("starting platform", platform_id); // loaded required <platform_id>.js file
     return await startPlatform(qs);
   } catch (e) {
-    console.log(e);
-    alert('Platform "' + platform_id + '" not supported.');
+    console.error(e.stack);
+    alert('Failed to start Platform "' + platform_id + '" see console ');
   }
 }
 
