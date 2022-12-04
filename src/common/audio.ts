@@ -396,18 +396,27 @@ export var SampleAudio = function(clockfreq) {
       for (var buf of bufferlist)
         buf.fill(0);
   }
-
+  function isAndroid() {
+    var u =  navigator.userAgent.toLowerCase();
+    return (
+      u.indexOf("android") != -1 && u.indexOf("windows") == -1
+    );
+  }
+  function bufTime() {
+    return isAndroid() ? 30/60 : 3/60;
+  }
   function createContext() {
     var AudioContext = window['AudioContext'] || window['webkitAudioContext'] || window['mozAudioContext'];
     if (! AudioContext) {
       console.log("no web audio context");
       return;
     }
-    var ctx : AudioContext = new AudioContext();
+    var ctx : AudioContext = new AudioContext({ sampleRate: 48000 });
     self.context = ctx;
     self.sr=self.context.sampleRate;
-    self.bufferlen=2048;
-
+    self.bufferlen=Math.floor(bufTime()*self.sr);
+    console.log("sampleRate", ctx.sampleRate, "bullerlen", self.bufferlen);
+    
     // remove DC bias
     self.filterNode=self.context.createBiquadFilter();
     self.filterNode.type='lowshelf';

@@ -147,7 +147,7 @@ export class MSX1 extends BaseZ80VDPBasedMachine {
           case 0x98: return this.vdp.readData();
           case 0x99: return this.vdp.readStatus();
           case 0xa2:
-            if (this.psg.currentRegister() == 14) return ~this.inputs[JOY_INPUT_0]; // TODO: joy 1?
+            if (this.psg.currentRegister() == 14) return 0;//~this.inputs[JOY_INPUT_0]; // TODO: joy 1?
             else return this.psg.readData();
           case 0xa8: return this.slotmask;
           case 0xa9: return ~this.inputs[KEYBOARD_ROW_0 + (this.ppi_c & 15)];
